@@ -7,5 +7,15 @@
  */
 class Domain_Book
 {
+    public function getBookInfoByBookName($BookName)
+    {
+//        var_dump($BookName);
 
+        $model = new Model_Book();
+        $rs = $model->getBookInfoByBookName($BookName);
+
+//        var_dump($BookName);
+
+        return $rs;
+    }
 }
