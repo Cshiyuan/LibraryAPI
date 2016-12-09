@@ -123,6 +123,23 @@ class Model_User
         }
     }
 
+    public function recordUserBookSearchInformation($UID, $bookName, $slf)
+    {
+        $record = DI()->notorm->record;
+//        $hash = $this->hashSSHA($password);
+//        $encrypted_password = $hash["encrypted"]; // 加密密码
+//        $salt = $hash["salt"]; // salt
+        $data = array('UID' => $UID, 'book_name' => $bookName, 'slf' => $slf, 'search_time' => date('Y-m-d H:i:s',time()));
+        $record->insert($data);
+        $id = $record->insert_id(); //必须是同一个实例，方能获取到新插入的行ID，且表必须设置了自增
+        return $id;
+    }
 
+    public function getUserSearchInformation($UID)
+    {
+        $record = DI()->notorm->record;
+        $rs = $record->select("*")->where("UID",$UID)->fetchAll();
+        return $rs;
+    }
 
 }

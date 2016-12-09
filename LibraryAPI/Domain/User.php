@@ -43,4 +43,19 @@ class Domain_User
         $rs = $model->changeUserInformation($UID, $username, $introduction);
         return $rs;
     }
+
+    public function recordUserBookSearchInformation($UID, $bookName, $slf)
+    {
+        $model = new Model_User();
+        $rs = $model->recordUserBookSearchInformation($UID, $bookName, $slf);
+        return $rs;
+    }
+
+    public function getUserSearchInformation($UID)
+    {
+        $model = new Model_User();
+        $rs = $model->getUserSearchInformation($UID);
+        return $rs;
+    }
+
 }

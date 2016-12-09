@@ -90,6 +90,41 @@ class Api_User extends PhalApi_Api
         return $rs;
     }
 
+    //记录图书查询记录
+    public function recordUserBookSearchInformation()
+    {
+        $rs = array('code' => 0, 'msg' => '', 'info' => array());  //初始化$rs
+        $domain = new Domain_User();
+        $result = $domain->recordUserBookSearchInformation($this->UID, $this->bookName, $this->slf);
+        if ($result == null) {
+            $rs['code'] = 400;
+            $rs['msg'] = 'User';
+        } else {
+            $rs['code'] = 200;
+            $rs['msg'] = '修改成功';
+            $rs['info'] = $result;
+        }
+        return $rs;
+    }
+
+    //获得用户图书记录
+    public function getUserSearchInformation()
+    {
+        $rs = array('code' => 0, 'msg' => '', 'info' => array());  //初始化$rs
+        $domain = new Domain_User();
+        $result = $domain->getUserSearchInformation($this->UID);
+        if ($result == null) {
+            $rs['code'] = 400;
+            $rs['msg'] = 'User';
+        } else {
+            $rs['code'] = 200;
+            $rs['msg'] = '修改成功';
+            $rs['info'] = $result;
+        }
+        return $rs;
+    }
+
+
     public function getRules()
     {
         return array(
@@ -112,6 +147,14 @@ class Api_User extends PhalApi_Api
                 'username' => array('name' => 'username','require' => true),
                 'introduction' => array('name' => 'introduction','require' => true),
             ),
+            'recordUserBookSearchInformation' => array(
+                'UID' => array('name' => 'UID', 'type' => 'int', 'min' => 1, 'require' => true),
+                'bookName' => array('name' => 'bookName','require' => true),
+                'slf' => array('name' => 'slf','require' => true),
+            ),
+            'getUserSearchInformation' => array(
+                'UID' => array('name' => 'UID', 'type' => 'int', 'min' => 1, 'require' => true),
+            )
         );
     }
 
