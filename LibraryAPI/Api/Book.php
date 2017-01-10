@@ -10,7 +10,7 @@
 class Api_Book extends PhalApi_Api
 {
 
-    /**
+     /**
      * 通过Email向小组里的添加组员
      * @desc 通过Email向小组里的添加组员
      */
